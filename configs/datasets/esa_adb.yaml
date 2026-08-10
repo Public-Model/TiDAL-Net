@@ -1,0 +1,12 @@
+dataset:
+  name: esa_adb
+  raw_root: data/raw/esa_adb
+  output: data/processed/esa_adb.npz
+  expected_channels: 327
+  channel_manifest: data/manifests/esa_adb_channels.json
+  sample_interval_seconds: 60.0
+  timestamp_mode: native_elapsed
+  normalization: zscore
+  normalization_scope: train_only
+  natural_gaps_in_supervised_metrics: false
+  notes: "Verify selected channel count against the exact ESA release and paper preprocessing."

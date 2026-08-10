@@ -1,0 +1,21 @@
+# Pattern proportions are runnable REVIEW_DEFAULT values. Replace with the dataset-specific
+# statistics used in the revised paper and commit the resulting manifest.
+affected_ratio: 0.05
+drift_fraction: 0.35
+missing_pattern_weights:
+  isolated: 0.30
+  short_burst: 0.30
+  long_gap: 0.20
+  correlated_channel: 0.20
+short_burst_length: [2, 8]
+long_gap_length: [12, 48]
+correlated_group_size: [2, 6]
+drift_type_weights:
+  gaussian: 0.20
+  uniform: 0.20
+  heavy_tailed: 0.20
+  accumulated: 0.20
+  reset: 0.20
+drift_scale: 0.35
+max_abs_drift: 2.0
+measurement_noise_std: 0.0

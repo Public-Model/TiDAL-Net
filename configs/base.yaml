@@ -1,0 +1,63 @@
+project:
+  name: TiDAL-Net
+  status: under_review
+  seed: 2026
+
+data:
+  clean_path: data/processed/demo.npz
+  path: data/processed/demo_corrupted.npz
+  corruption_config: configs/corruption/reality_informed.yaml
+  graph_path: data/graphs/demo_mic.npy
+  split: [0.6, 0.2, 0.2]       # SOURCE: original manuscript
+  window: 32                    # REVIEW_DEFAULT: verify final paper value
+  stride: 8                     # REVIEW_DEFAULT
+  normalize: zscore
+  normalization_scope: train_only
+  num_workers: 0
+
+model:
+  hidden_dim: 32                # REVIEW_DEFAULT; original manuscript reports wider multilayer shapes
+  channel_embedding_dim: 8      # REVIEW_DEFAULT
+  nsde_steps: 4                 # REVIEW_DEFAULT: exact revised value absent from supplied response
+  mc_paths_train: 4             # REVIEW_DEFAULT
+  mc_paths_eval: 8              # REVIEW_DEFAULT
+  diffusion_floor: 1.0e-4       # REVIEW_DEFAULT
+  tau_min: 0.05                 # REVIEW_DEFAULT
+  max_graph_radius: 3           # REVIEW_DEFAULT
+  base_temporal_window: 4       # REVIEW_DEFAULT
+  graph_heads: 2
+  dropout: 0.1
+  use_diffusion: true
+  use_uncertainty_fusion: true
+  use_neighbor_conditioning: true
+  use_dynamic_tau: true
+  use_dynamic_radius: true
+  use_dynamic_window: true
+  use_graph_feedback: true
+
+training:
+  optimizer: adam
+  learning_rate: 0.0005         # SOURCE: original manuscript
+  batch_size: 16                # SOURCE: original manuscript
+  epochs: 500                   # SOURCE: original manuscript
+  early_stopping_patience: 50   # SOURCE: original manuscript
+  weight_decay: 1.0e-5          # REVIEW_DEFAULT
+  grad_clip: 1.0
+  masked_mae_weight: 1.0
+  masked_mse_weight: 1.0
+  identity_weight: 0.1          # REVIEW_DEFAULT
+  cross_channel_weight: 0.01    # REVIEW_DEFAULT
+  output_dir: outputs/main
+
+evaluation:
+  ratios: [0.03, 0.05, 0.08, 0.10]
+  paired_runs: 30
+  metrics: [mae, rmse, mape]
+  mape_epsilon: 1.0e-6
+  confidence: 0.95
+
+latency:
+  warmup: 100
+  repetitions: 1000
+  batch_size: 1
+  synchronize_cuda: true

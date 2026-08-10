@@ -1,0 +1,16 @@
+base: configs/base.yaml
+variants:
+  full: {}
+  forward_only_nsde: {model.forward_only: true}
+  without_binsde: {model.disable_binsde: true}
+  standard_gru: {model.use_dynamic_tau: false}
+  without_ligru: {model.disable_ligru: true}
+  fixed_gat: {model.use_dynamic_radius: false, model.use_dynamic_window: false}
+  without_ligat: {model.disable_ligat: true}
+  without_diffusion: {model.use_diffusion: false}
+  mean_fusion: {model.use_uncertainty_fusion: false}
+  without_neighbor_conditioning: {model.use_neighbor_conditioning: false}
+  fixed_tau: {model.use_dynamic_tau: false}
+  fixed_spatial_radius: {model.use_dynamic_radius: false}
+  fixed_temporal_window: {model.use_dynamic_window: false}
+  without_graph_feedback: {model.use_graph_feedback: false}

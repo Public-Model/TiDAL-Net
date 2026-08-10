@@ -1,0 +1,12 @@
+dataset:
+  name: constellation_sim
+  raw_root: data/raw/constellation_sim
+  output: data/processed/constellation_sim.npz
+  expected_channels: 62
+  channel_manifest: data/manifests/constellation_sim_channels.json
+  sample_interval_seconds: 60.0
+  timestamp_mode: native_elapsed
+  normalization: zscore
+  normalization_scope: train_only
+  natural_gaps_in_supervised_metrics: false
+  notes: "Private simulator output; schema-only release."

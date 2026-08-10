@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated manuscript."
+title: "TiDAL-Net: Review-stage Reproducibility Release"
+type: software
+authors:
+  - family-names: Wang
+    given-names: Yingqi
+version: 0.1.0-review
+date-released: 2026-08-04
+license: MIT
+repository-code: "https://github.com/OWNER/TiDAL-Net"
+preferred-citation:
+  type: article
+  title: "A Time-Drift-Aware Liquid Spatio-Temporal Graph Network for Satellite Constellation Irregular Telemetry Data Reconstruction"
+  authors:
+    - family-names: Wang
+      given-names: Yingqi
+  notes: "Manuscript under peer review; update journal metadata after acceptance."

@@ -1,0 +1,17 @@
+# This registry documents task-aligned adaptation. Third-party source is not vendored.
+# Pin exact upstream commit hashes before the final release.
+baselines:
+  Autoformer: {category: forecasting, adaptation: replace_output_head, upstream_commit: AUTHOR_REQUIRED}
+  PAREformer: {category: forecasting, adaptation: replace_output_head, upstream_commit: AUTHOR_REQUIRED}
+  TraverseNet: {category: forecasting, adaptation: replace_output_head, upstream_commit: AUTHOR_REQUIRED}
+  COOL: {category: forecasting, adaptation: replace_output_head, upstream_commit: AUTHOR_REQUIRED}
+  DSTGNN: {category: forecasting, adaptation: replace_output_head, upstream_commit: AUTHOR_REQUIRED}
+  GNN-DTAN: {category: anomaly_detection, adaptation: remove_score_and_threshold, upstream_commit: AUTHOR_REQUIRED}
+  MSDG: {category: anomaly_detection, adaptation: remove_score_and_threshold, upstream_commit: AUTHOR_REQUIRED}
+  MSTGAD: {category: anomaly_detection, adaptation: remove_score_and_threshold, upstream_commit: AUTHOR_REQUIRED}
+  MAG: {category: representation, adaptation: add_linear_reconstruction_head, upstream_commit: AUTHOR_REQUIRED}
+  HiSTAR: {category: representation, adaptation: add_linear_reconstruction_head, upstream_commit: AUTHOR_REQUIRED}
+  MAD-ODE: {category: anomaly_detection, adaptation: retain_STGODE_predictor_remove_detector, upstream_commit: AUTHOR_REQUIRED}
+  FuGLAD: {category: anomaly_detection, adaptation: retain_DCRNN_remove_detector, upstream_commit: AUTHOR_REQUIRED}
+  MeaTS: {category: missing_aware_forecasting, adaptation: native_missing_model, upstream_commit: AUTHOR_REQUIRED}
+  SAITS: {category: imputation, adaptation: native_imputation_model, upstream_commit: AUTHOR_REQUIRED}

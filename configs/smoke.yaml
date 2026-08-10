@@ -1,0 +1,26 @@
+base: configs/base.yaml
+project:
+  seed: 7
+data:
+  path: data/processed/demo_corrupted.npz
+  graph_path: data/graphs/demo_mic.npy
+  window: 12
+  stride: 6
+model:
+  hidden_dim: 8
+  channel_embedding_dim: 4
+  nsde_steps: 1
+  mc_paths_train: 2
+  mc_paths_eval: 2
+  graph_heads: 1
+  max_graph_radius: 2
+  base_temporal_window: 2
+  dropout: 0.0
+training:
+  batch_size: 4
+  epochs: 1
+  early_stopping_patience: 1
+  output_dir: outputs/smoke
+latency:
+  warmup: 2
+  repetitions: 5

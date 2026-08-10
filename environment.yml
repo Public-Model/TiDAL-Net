@@ -1,0 +1,19 @@
+name: tidalnet
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pandas
+  - pyyaml
+  - scipy
+  - scikit-learn
+  - tqdm
+  - requests
+  - pytorch>=2.1
+  - pip:
+      - pytest>=7.4
+      - ruff>=0.4
+      - -e .

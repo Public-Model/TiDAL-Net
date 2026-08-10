@@ -1,0 +1,9 @@
+{
+  "policy": "chronological",
+  "train": 0.6,
+  "validation": 0.2,
+  "test": 0.2,
+  "normalization_fit": "training split only",
+  "natural_missing_positions": "excluded from supervised reconstruction metrics",
+  "artificial_masks": "seeded and saved for reuse by every method"
+}

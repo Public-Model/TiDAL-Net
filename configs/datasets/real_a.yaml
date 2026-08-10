@@ -1,0 +1,12 @@
+dataset:
+  name: real_a
+  raw_root: data/raw/real_a
+  output: data/processed/real_a.npz
+  expected_channels: 107
+  channel_manifest: data/manifests/real_a_channels.json
+  sample_interval_seconds: 60.0
+  timestamp_mode: native_elapsed
+  normalization: zscore
+  normalization_scope: train_only
+  natural_gaps_in_supervised_metrics: false
+  notes: "Private data; schema-only release."

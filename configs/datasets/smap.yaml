@@ -1,0 +1,12 @@
+dataset:
+  name: smap
+  raw_root: data/raw/smap
+  output: data/processed/smap.npz
+  expected_channels: 20
+  channel_manifest: data/manifests/smap_channels.json
+  sample_interval_seconds: 60.0
+  timestamp_mode: constructed_nominal
+  normalization: zscore
+  normalization_scope: train_only
+  natural_gaps_in_supervised_metrics: false
+  notes: "Exact channel IDs must be replaced by the paper manifest."
