@@ -15,7 +15,7 @@ During the revision and peer-review period, the following materials are intentio
 - exact channel selections and ordered channel manifests used for each dataset;
 - exact train, validation, and test boundaries and all paper-specific sample indices;
 - final loss weights, model dimensions, solver settings, graph thresholds, and other key hyperparameters;
-- complete reality-informed missingness and timestamp-drift distributions derived from the experimental datasets;
+- final frozen dataset-specific corruption manifests and empirical per-dataset mixture tables used for the accepted-paper archive;
 - the final random seeds, corruption masks, normalization statistics, checkpoints, and training logs used to generate the paper tables;
 - the complete processed datasets and the full Real-A, Real-B, and Constellation-Sim data packages;
 - paper-exact scripts for reproducing every table, figure, ablation, and sensitivity result.
@@ -39,7 +39,7 @@ TiDAL-Net is a closed-loop reconstruction framework:
 2. **Li-GRU** uses positive input- and state-dependent liquid time constants conditioned on compensated values, elapsed time, local variation, Bi-NSDE uncertainty, channel embeddings, and graph feedback.
 3. **Li-GAT** dynamically selects a prior-constrained local graph from a training-only MIC candidate graph, reweights edges using temporal compatibility and hidden-state similarity, and returns graph feedback to the next recurrent update.
 
-The repository distinguishes missing observations from timestamp-displaced observations. Missing and drift sets are disjoint. The corruption generator supports isolated loss, short bursts, long communication gaps, correlated-channel loss, Gaussian jitter, bounded uniform drift, heavy-tailed drift, accumulated drift, reset-type drift, and mixed conditions.
+The repository distinguishes missing observations from timestamp-displaced observations. Missing and drift sets are disjoint. The public generator now exposes the complete degradation mechanics: isolated loss, short bursts, log-normal long gaps, correlated-channel loss, Gaussian jitter, heavy-tailed transient offsets, accumulated drift, and reset drift. Missing values are concealed only from the received input (`received_values=0`, `observation_mask=0`) while the original reference value is retained for evaluation. Timestamp-displaced values remain received; only their physical event times change through `observation_times = reference_times + timestamp_offsets`. Offsets are generated in nominal sampling intervals and converted to the physical time unit of the input timeline. The generator also records operator IDs, realized counts, and the resolved configuration in every corrupted NPZ. See [`docs/CORRUPTION_PROTOCOL.md`](docs/CORRUPTION_PROTOCOL.md).
 
 ## Reproducibility status
 
@@ -77,6 +77,8 @@ python scripts/build_mic_graph.py --input data/processed/demo.npz --output data/
 python scripts/generate_corruptions.py \
   --input data/processed/demo.npz \
   --graph data/graphs/demo_mic.npy \
+  --config configs/corruption/reality_informed.yaml \
+  --dataset esa_adb \
   --output data/processed/demo_corrupted.npz \
   --ratio 0.05 --seed 2026
 python scripts/train.py --config configs/smoke.yaml
@@ -88,6 +90,12 @@ Or run:
 ```bash
 bash scripts/reproduce_smoke.sh
 ```
+
+### Exact degradation semantics
+
+For a requested affected-data ratio, only positions with `natural_mask=1` are eligible. The public protocol first divides the affected positions into missing observations and timestamp displacement. Missing observations are removed from the received stream but kept in the reference array as evaluation targets. Timestamp-displaced observations retain their values and masks, while their event times are shifted by a nonzero offset. The four missingness operators and four timestamp processes, ratio-dependent mixtures, gap-length calibration, collision handling, and the audit arrays saved in each NPZ are specified in [`docs/CORRUPTION_PROTOCOL.md`](docs/CORRUPTION_PROTOCOL.md).
+
+The default generator operates independently inside the chronological training, validation, and test splits. A generated corruption NPZ is immutable for a paired experiment and must be reused by TiDAL-Net and all baselines. Use `--global-mask` only when intentionally testing a single whole-sequence corruption realization.
 
 ## Dataset availability during review
 
