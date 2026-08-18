@@ -1,21 +1,75 @@
-# Pattern proportions are runnable REVIEW_DEFAULT values. Replace with the dataset-specific
-# statistics used in the revised paper and commit the resulting manifest.
+# Executable reality-informed degradation protocol used by generate_corruptions.py.
+# The affected-data ratio is an occurrence ratio over originally valid channel-time
+# positions. Missing and timestamp-displaced sets are sampled disjointly.
+#
+# The public profile exposes the complete operator semantics and the calibration
+# statistics stated in the revision response. Dataset-specific empirical manifests can
+# override any field through `dataset_profiles` without changing the implementation.
+
 affected_ratio: 0.05
-drift_fraction: 0.35
+
+# 60% missing observations + 40% timestamp-displaced observations.
+drift_fraction: 0.40
+
+# Base missingness mixture: 30% isolated and 70% contiguous/structured mass.
 missing_pattern_weights:
   isolated: 0.30
-  short_burst: 0.30
+  short_burst: 0.35
   long_gap: 0.20
-  correlated_channel: 0.20
+  correlated_channel: 0.15
+
+# Ratio-dependent mixture used to encode the manuscript rule that isolated loss is
+# more common at low ratios and long contiguous gaps become more prominent as the
+# affected-data ratio increases. These weights are explicit so every generated mask is
+# auditable from metadata_json.
+ratio_missing_pattern_weights:
+  "0.03": {isolated: 0.30, short_burst: 0.40, long_gap: 0.15, correlated_channel: 0.15}
+  "0.05": {isolated: 0.25, short_burst: 0.38, long_gap: 0.20, correlated_channel: 0.17}
+  "0.08": {isolated: 0.18, short_burst: 0.34, long_gap: 0.28, correlated_channel: 0.20}
+  "0.10": {isolated: 0.10, short_burst: 0.25, long_gap: 0.45, correlated_channel: 0.20}
+
 short_burst_length: [2, 8]
-long_gap_length: [12, 48]
+
+# Long-gap lengths are sampled from a log-normal distribution calibrated by the
+# stated median/95th-percentile statistics and clipped to a finite range.
+long_gap_median_samples: 15.0
+long_gap_p95_samples: 90.0
+long_gap_length_bounds: [3, 180]
+
+# Correlated-channel loss uses the graph row of a randomly selected anchor channel;
+# without a graph, channels are sampled uniformly.
 correlated_group_size: [2, 6]
+
+# Timestamp displacement types correspond to the four processes described in the
+# manuscript. The weights are normalized internally.
 drift_type_weights:
-  gaussian: 0.20
-  uniform: 0.20
-  heavy_tailed: 0.20
-  accumulated: 0.20
-  reset: 0.20
-drift_scale: 0.35
-max_abs_drift: 2.0
+  jitter: 0.25
+  heavy_tailed: 0.25
+  accumulated: 0.25
+  reset: 0.25
+
+# Offsets are generated in nominal sampling intervals and converted to seconds (or the
+# physical unit of reference_times) before being stored in timestamp_offsets.
+drift_sigma_intervals: 2.0
+max_abs_drift_intervals: 5.0
+min_abs_drift_intervals: 0.05
+heavy_tail_df: 3.0
+accumulated_step_sigma_intervals: 0.25
+accumulated_length: [8, 48]
+reset_period_mean_samples: 100.0
+reset_period_bounds: [12, 200]
+
+# If a displaced event maps outside the split or collides with an already received
+# event after nearest-grid quantization, it is converted to a missing observation.
+collision_to_missing: false
+
 measurement_noise_std: 0.0
+
+# Optional paper-exact dataset overrides can be committed here once the final
+# empirical manifests are frozen. Empty profiles currently inherit the public protocol.
+dataset_profiles:
+  msl: {}
+  smap: {}
+  esa_adb: {}
+  real_a: {}
+  real_b: {}
