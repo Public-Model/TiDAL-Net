@@ -41,3 +41,13 @@ def validate_corrupted(data: dict[str, np.ndarray]) -> None:
     expected_eval &= data["natural_mask"] > 0
     if not np.array_equal(expected_eval.astype(np.float32), data["evaluation_mask"].astype(np.float32)):
         raise ValueError("evaluation_mask is inconsistent with artificial affected positions")
+
+    if "observation_times" in data:
+        if data["observation_times"].shape != shape:
+            raise ValueError("observation_times must have shape [T, M]")
+        expected_times = data["reference_times"][:, None] + data["timestamp_offsets"]
+        if not np.allclose(data["observation_times"], expected_times):
+            raise ValueError("observation_times is inconsistent with timestamp_offsets")
+    for key in ("missing_pattern_id", "drift_type_id"):
+        if key in data and data[key].shape != shape:
+            raise ValueError(f"{key} has shape {data[key].shape}, expected {shape}")
