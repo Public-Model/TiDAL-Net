@@ -1,10 +1,11 @@
-# TiDAL-Net
+[fig4.pdf](https://github.com/user-attachments/files/31549162/fig4.pdf)# TiDAL-Net
 
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-> **Important: review-stage restricted release.** The manuscript associated with this repository is currently under revision and peer review. This repository is an interim technical release rather than the final paper-exact reproducibility package. It provides the main TiDAL-Net architecture, executable examples, data-interface definitions, and the overall training and evaluation workflow. Selected key implementation details, final experimental parameters, processed data assets, and the complete datasets used in the paper are temporarily withheld during the review process. The complete paper-exact code, configurations, manifests, checkpoints, and datasets will be released after the manuscript is accepted, subject to the licenses and data-sharing requirements of the original data owners.
+> **Important: review-stage restricted release.** The manuscript associated with this repository is currently under revision and peer review. This repository is an interim technical release rather than the final paper-exact reproducibility package. It provides the main TiDAL-Net architecture, executable examples, data-interface definitions, and the overall training and evaluation workflow. Selected key implementation details, final experimental parameters, processed data assets, and the complete data[fig4.pdf](https://github.com/user-attachments/files/31549168/fig4.pdf)
+sets used in the paper are temporarily withheld during the review process. The complete paper-exact code, configurations, manifests, checkpoints, and datasets will be released after the manuscript is accepted, subject to the licenses and data-sharing requirements of the original data owners.
 
 ## Review-stage availability statement
 
