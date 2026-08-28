@@ -1,4 +1,4 @@
-[fig4.pdf](https://github.com/user-attachments/files/31549162/fig4.pdf)# TiDAL-Net
+# TiDAL-Net
 
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
