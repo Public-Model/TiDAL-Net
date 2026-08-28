@@ -4,8 +4,7 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-> **Important: review-stage restricted release.** The manuscript associated with this repository is currently under revision and peer review. This repository is an interim technical release rather than the final paper-exact reproducibility package. It provides the main TiDAL-Net architecture, executable examples, data-interface definitions, and the overall training and evaluation workflow. Selected key implementation details, final experimental parameters, processed data assets, and the complete data[fig4.pdf](https://github.com/user-attachments/files/31549168/fig4.pdf)
-sets used in the paper are temporarily withheld during the review process. The complete paper-exact code, configurations, manifests, checkpoints, and datasets will be released after the manuscript is accepted, subject to the licenses and data-sharing requirements of the original data owners.
+> **Important: review-stage restricted release.** The manuscript associated with this repository is currently under revision and peer review. This repository is an interim technical release rather than the final paper-exact reproducibility package. It provides the main TiDAL-Net architecture, executable examples, data-interface definitions, and the overall training and evaluation workflow. Selected key implementation details, final experimental parameters, processed data assets, and the complete datasets used in the paper are temporarily withheld during the review process. The complete paper-exact code, configurations, manifests, checkpoints, and datasets will be released after the manuscript is accepted, subject to the licenses and data-sharing requirements of the original data owners.
 
 ## Review-stage availability statement
 
@@ -128,12 +127,73 @@ python scripts/run_repeated.py --config configs/base.yaml --runs 30 --ratio 0.05
 python scripts/aggregate_runs.py --input outputs/main --output outputs/main/summary.csv
 ```
 
+## Complete results for all 14 baselines
+
+The `†` marker in Table II, Figs. 3--5, Table V, and Fig. 7 of the manuscript points to this section. TiDAL-Net is evaluated against 14 baseline methods, while the manuscript presents 10 representative baselines because of space limitations. The complete comparison covers four groups:
+
+- **Temporal:** Autoformer, PAREformer, MeaTS, and SAITS;
+- **Spatial:** GNN-DTAN and MSD-GNN;
+- **Static spatio-temporal:** MAG, HiSTAR, MSTGAD, MAD-ODE, and FuGLAD;
+- **Dynamic spatio-temporal:** TraverseNet, COOL, and DSTGNN.
+
+The full-resolution files are organized under `results/full_baseline_comparison/`.
+
+### Table II — Reconstruction performance
+
+Table II reports the complete reconstruction results of all 14 baselines and TiDAL-Net on MSL, SMAP, ESA-ADB, Real-A, Real-B, and Const-Sim. MAE and RMSE are evaluated at affected-data ratios of 3%, 5%, 8%, and 10%. Values are reported as mean ± standard deviation over 30 runs, together with the Holm-adjusted MAE significance results.
+
+![Complete reconstruction results corresponding to Table II](results/full_baseline_comparison/table_ii_full_results.png)
+
+This table supports direct comparison across datasets and degradation levels. It also shows how the relative advantage of TiDAL-Net changes as the affected-data ratio increases.
+
+### Fig. 3 — Overall reconstruction comparison
+
+Fig. 3 summarizes the principal accuracy comparison. Panels (a)--(f) show the MAE trends on the six datasets as the affected-data ratio increases, while panels (g)--(h) compare the average performance and overall ranking of all methods.
+
+![Complete overall comparison corresponding to Fig. 3](results/full_baseline_comparison/fig3_full_results.png)
+
+The figure shows that conventional temporal, spatial, and spatio-temporal models degrade differently under increasingly irregular telemetry. TiDAL-Net achieves the lowest overall error above an affected-data ratio of approximately 3.9%, and its advantage becomes clearer under more severe degradation.
+
+### Fig. 4 — Real-B reconstruction case
+
+Fig. 4 presents a representative Real-B case at the 5% affected-data ratio. It includes a communication gap and a timestamp-displacement interval, allowing the methods to be compared in terms of trajectory continuity, amplitude recovery, phase alignment, and residual error.
+
+![Complete Real-B case comparison corresponding to Fig. 4](results/full_baseline_comparison/fig4_real_b_case.png)
+
+The communication-gap segment evaluates recovery when observations are unavailable, whereas the timestamp-displacement segment evaluates whether a method can account for the actual acquisition time rather than relying only on sample indices.
+
+### Fig. 5 — Constellation reconstruction case
+
+Fig. 5 shows a representative constellation event sequence containing a ground-link outage, an inter-satellite link failure, and subsequent link reselection. The figure compares reconstruction errors during link interruption and the recovery behavior after communication becomes available again.
+
+![Complete constellation case comparison corresponding to Fig. 5](results/full_baseline_comparison/fig5_constellation_case.png)
+
+This case evaluates whether each method can adapt to changing communication reachability. TiDAL-Net uses the current reachability mask to suppress unavailable relations and reweight the remaining valid cross-satellite information.
+
+### Table V — Computational cost and accuracy
+
+Table V compares all methods in terms of trainable parameters, single-window latency at batch size 1, peak GPU memory, computational complexity, and average MAE. It also reports the cost profile of Bi-NSDE, Li-GRU, Li-GAT, and the decoder, together with batch-64 throughput.
+
+![Complete computational comparison corresponding to Table V](results/full_baseline_comparison/table_v_full_efficiency.png)
+
+The table provides a direct view of the accuracy–efficiency trade-off. Although TiDAL-Net has a higher model cost, its 5.80 ms single-window latency remains well below the assessed telemetry query interval, while batch processing reduces the amortized latency to 0.72 ms per window.
+
+### Fig. 7 — Accuracy–efficiency trade-off
+
+Fig. 7 visualizes the relationship among reconstruction accuracy, latency, memory consumption, and throughput for all evaluated methods. It complements Table V by showing whether improvements in reconstruction accuracy are obtained at a practical computational cost.
+
+![Complete accuracy–efficiency comparison corresponding to Fig. 7](results/full_baseline_comparison/fig7_efficiency_tradeoff.png)
+
+The figure highlights the operating position of TiDAL-Net relative to lightweight and high-capacity baselines. It shows that TiDAL-Net maintains online reconstruction capability while providing the lowest average reconstruction error.
+
 ## Repository map
 
 ```text
 configs/                    paper, dataset, ablation, and sensitivity configs
 data/manifests/             committed channel/split/corruption manifests
 docs/                       reproducibility and paper-to-code documentation
+results/full_baseline_comparison/
+                            complete 14-baseline tables and figures
 scripts/                    data, training, evaluation, statistics, and latency CLIs
 src/tidalnet/data/          schemas, normalization, windows, corruption operators
 src/tidalnet/graph/         training-only MIC graph construction
