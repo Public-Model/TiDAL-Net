@@ -1,7 +1,5 @@
 # Author verification required before public submission
 
-The following information is not recoverable from the supplied original manuscript and response text. It must be copied from the actual revised experiment scripts/checkpoints rather than guessed.
-
 - [ ] Exact ordered identifiers of the 8 MSL channels.
 - [ ] Exact ordered identifiers of the 20 SMAP channels.
 - [ ] Exact ESA-ADB release/version, channel count, ordered identifiers, and raw checksums. The response text states 327 physical channels; verify this against the exact downloaded release.
