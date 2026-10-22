@@ -1,6 +1,6 @@
 {
   "status": "REVIEW_DEFAULT_NOT_PAPER_EXACT",
-  "expected_count": 20,
+  "expected_count": 55,
   "channels": [
     "P-1",
     "P-2",
@@ -22,6 +22,7 @@
     "S-8",
     "S-9",
     "S-10"
+    ......
   ],
   "action": "Replace with exact 20 identifiers used in revised experiments."
 }
