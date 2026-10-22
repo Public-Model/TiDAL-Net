@@ -1,0 +1,6 @@
+Table S12: Relations absent from the default candidate graph in the unseen modes and the MAE increase of TiDAL-Net.
+Dataset,Strong pairs absent (%),Channels in absent pairs (%),Other channels (%)
+Real-A,7.4,38.2,13.1
+Real-B,6.1,35.7,12.6
+Const-Sim,11.8,50.9,17.2
+Average,8.4,41.6,14.3

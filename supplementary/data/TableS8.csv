@@ -1,0 +1,4 @@
+Table S8: Scaled uncertainty of TiDAL-Net within the gaps. The mean sigma is on the same x1e2 scale as MAE.
+Quantity,G=8,G=16,G=32,G=64,G=128
+Mean scaled sigma (x1e2),2.4,2.7,3.2,3.8,4.6
+90% coverage (%),90.1,89.6,88.9,87.8,86.4

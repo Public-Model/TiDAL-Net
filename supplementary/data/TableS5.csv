@@ -1,0 +1,6 @@
+"Table S5: Error by position type and run-to-run standard deviation, averaged over 0.5%-2.5% and six datasets. Displaced samples are a subset of the affected positions."
+Method,Isolated positions,Consecutive runs,Displaced samples,Std over 30 runs
+Share of affected positions (%),55-71,29-45,60,-
+COOL,0.92,2.12,1.38,0.06-0.08
+TiDAL-Net,1.15,1.84,1.12,0.04-0.05
+Difference (%),+25.0,-13.2,-18.8,-

@@ -1,0 +1,8 @@
+"Fig. S4(a),(b): reliability of the estimated uncertainty"
+dataset,spearman,spearman_within_anchor_bins,coverage_raw_%,coverage_scaled_%
+MSL,0.71,0.52,93.8,90.4
+SMAP,0.66,0.47,92.6,89.8
+ESA-ADB,0.63,0.41,87.4,89.1
+Real-A,0.68,0.49,91.9,90.2
+Real-B,0.73,0.56,94.3,90.6
+Const-Sim,0.65,0.44,88.6,89.3

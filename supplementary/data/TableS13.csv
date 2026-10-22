@@ -1,0 +1,14 @@
+Table S13: Sensitivity of the graph-related parameters. Defaults: gamma=0.3, K_MIC=8, T_r=10, gamma_t=0.1, Delta_t_max=10; latency is in ms and is 5.8 ms for parameters without a latency row.
+Parameter,Quantity,Evaluated values
+gamma,Value,0.1,0.2,0.3,0.4,0.5,0.6
+,MAE,0.0231,0.0224,0.0220,0.0223,0.0232,0.0247
+,Latency,7.1,6.3,5.8,5.5,5.3,5.1
+K_MIC,Value,4,6,8,12,16,24
+,MAE,0.0238,0.0226,0.0220,0.0221,0.0225,0.0233
+,Latency,5.1,5.4,5.8,6.4,7.0,8.1
+T_r,Value,2,5,10,20,50,100
+,MAE,0.0243,0.0227,0.0220,0.0222,0.0229,0.0236
+gamma_t,Value,0.01,0.05,0.1,0.2,0.5,1.0
+,MAE,0.0230,0.0223,0.0220,0.0222,0.0229,0.0241
+Delta_t_max,Value,2,5,10,20,40,inf
+,MAE,0.0232,0.0217,0.0210,0.0213,0.0221,0.0236

@@ -1,0 +1,5 @@
+"Table S10: Comparison of uncertainty quality, averaged over six datasets and four affected-data ratios. Coverage and ECE are after scaling; MAE, interval width, and CRPS are multiplied by 10^2."
+Method,MAE,rho_s,90% coverage (%),ECE (%),Interval width,CRPS
+CSDI,3.02,0.58,90.8,1.6,12.6,2.12
+TiDAL-Net w/o diffusion,2.72,0.35,85.6,4.8,7.4,1.98
+TiDAL-Net,2.20,0.68,89.9,1.1,9.1,1.56

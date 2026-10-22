@@ -1,0 +1,5 @@
+Fig. S5(b): MAE increase of TiDAL-Net by channel group
+dataset,increase_channels_in_absent_pairs_%,increase_other_channels_%
+Real-A,38.2,13.1
+Real-B,35.7,12.6
+Const-Sim,50.9,17.2

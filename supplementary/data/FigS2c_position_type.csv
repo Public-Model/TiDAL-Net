@@ -1,0 +1,5 @@
+"Fig. S2(c): MAE (x1e2) by position type, average over 0.5%-2.5%"
+position_type,COOL,TiDAL-Net
+Isolated positions,0.92,1.15
+Consecutive runs,2.12,1.84
+Displaced samples,1.38,1.12

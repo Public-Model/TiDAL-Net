@@ -1,0 +1,7 @@
+Table S1: Mission type of each dataset and its role in the evaluation.
+Dataset,Mission type,Role
+SMAP,LEO,"Primary LEO evidence, public benchmark"
+"Real-A, Real-B",LEO,"Primary LEO evidence, operational meteorological satellites"
+Const-Sim,LEO constellation,Supplementary multi-satellite extension with simulated links
+MSL,Deep space (Mars rover),"General spacecraft benchmark, nominal one-minute grid"
+ESA-ADB,Not disclosed in the release,"General spacecraft benchmark, native timing retained"

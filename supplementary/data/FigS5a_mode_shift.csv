@@ -1,0 +1,8 @@
+"Fig. S5(a): seen- and unseen-mode MAE (x1e2), average over Real-A, Real-B, Const-Sim"
+method,seen_MAE,unseen_MAE,increase_%
+Fixed GAT,2.3,2.99,29.7
+COOL,2.19,2.7,23.4
+DSTGNN,2.19,2.65,21.0
+TiDAL-Net,1.89,2.33,23.5
+Dense E0,2.01,2.21,10.3
+Rebuilt E0,1.88,2.06,9.4

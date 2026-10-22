@@ -1,0 +1,11 @@
+"Table S2: Composition of the injected degradation at each level, averaged over the datasets. Missing and displaced shares are percentages of all grid positions; type shares are percentages within each part. Corr.: missing positions with correlated-channel loss; Iso.: share of all affected positions that are isolated."
+Level,Missing (% of grid),Displaced (% of grid),Missing: isolated (%),Missing: burst (%),Missing: long (%),Missing: correlated (%),Displaced: single (%),Displaced: accumulated (%),Displaced: reset (%),Isolated share of affected (%)
+0.5%,0.2,0.3,68,22,10,9,73,20,7,71
+1.0%,0.4,0.6,64,24,12,11,69,22,9,67
+1.5%,0.6,0.9,59,26,15,13,66,24,10,63
+2.0%,0.8,1.2,55,27,18,15,63,26,11,60
+2.5%,1.0,1.5,50,29,21,16,58,29,13,55
+3%,1.2,1.8,45,30,25,18,53,32,15,50
+5%,2.0,3.0,38,32,30,22,48,35,17,44
+8%,4.0,4.0,30,32,38,27,42,38,20,36
+10%,5.5,4.5,25,31,44,31,38,40,22,31

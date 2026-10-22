@@ -1,0 +1,8 @@
+Table S11: Seen (S) and unseen (U) mode MAE at the 5% ratio. The increase is computed on the average over the three datasets.
+Method,Real-A S,Real-A U,Real-B S,Real-B U,Const-Sim S,Const-Sim U,Increase (%),Latency (ms)
+Fixed GAT,2.93,3.79,1.45,1.88,2.53,3.29,29.7,5.2
+COOL,3.04,3.71,1.27,1.57,2.26,2.83,23.4,3.07
+DSTGNN,2.95,3.56,1.37,1.66,2.26,2.74,21.0,2.84
+TiDAL-Net,2.74,3.31,1.17,1.45,1.76,2.24,23.5,5.8
+Dense mathcal E0,2.86,3.18,1.25,1.38,1.91,2.08,10.3,9.6
+Rebuilt mathcal E0,2.73,2.95,1.17,1.30,1.75,1.93,9.4,5.9

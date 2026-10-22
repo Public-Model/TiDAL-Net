@@ -1,0 +1,8 @@
+Table S3: Correspondence between the evaluated affected-data ratios and on-orbit conditions.
+Level,Corresponding condition
+0.5%-2.5%,Very low orbits or well-covered links (Section S2)
+3%,LEO with light degradation
+5%,"Routine LEO operation, about 5%-6% in the analyzed telemetry"
+8%,Heavily degraded LEO links
+10%,"Severe LEO conditions, up to 10% [2], [4]"
+Longer links,2%-5% loss assumed for an L2 survey mission [21]; up to 46% frame loss near solar conjunction [22]. The 3%-10% levels cover part of this range.

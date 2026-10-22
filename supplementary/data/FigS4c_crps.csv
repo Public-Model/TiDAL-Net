@@ -1,0 +1,5 @@
+Fig. S4(c): CRPS averaged over six datasets
+method,CRPS_x1e2
+CSDI,2.12
+w/o diffusion,1.98
+TiDAL- Net,1.56
