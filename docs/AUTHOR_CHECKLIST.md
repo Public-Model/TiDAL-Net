@@ -1,7 +1,7 @@
 # Author verification required before public submission
 
-- [ ] Exact ordered identifiers of the 8 MSL channels.
-- [ ] Exact ordered identifiers of the 20 SMAP channels.
+- [ ] Exact ordered identifiers of the 27 MSL channels.
+- [ ] Exact ordered identifiers of the 55 SMAP channels.
 - [ ] Exact ESA-ADB release/version, channel count, ordered identifiers, and raw checksums. The response text states 327 physical channels; verify this against the exact downloaded release.
 - [ ] Exact train/validation/test boundaries for every dataset, not only the 6:2:2 ratio.
 - [ ] Exact input window, output horizon, stride, and handling of sequence boundaries.
