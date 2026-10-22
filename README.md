@@ -6,6 +6,12 @@
 
 > **Important: review-stage restricted release.** The manuscript associated with this repository is currently under revision and peer review. This repository is an interim technical release rather than the final paper-exact reproducibility package. It provides the main TiDAL-Net architecture, executable examples, data-interface definitions, and the overall training and evaluation workflow. Selected key implementation details, final experimental parameters, processed data assets, and the complete datasets used in the paper are temporarily withheld during the review process. The complete paper-exact code, configurations, manifests, checkpoints, and datasets will be released after the manuscript is accepted, subject to the licenses and data-sharing requirements of the original data owners.
 
+## For readers of the manuscript
+
+- **Complete results of all 14 baselines** (`†` in Table II, Figs. 4–6, Table V, and Fig. 8): see [Complete results for all 14 baselines](#complete-results-for-all-14-baselines) and `results/full_baseline_comparison/`.
+- **Supplementary material** (`†` in Table VII and in the text): [`Supplementary_Material.pdf`](Supplementary_Material.pdf), with its figures, data, and source files in [`supplementary/`](supplementary/README.md). See [Supplementary material](#supplementary-material).
+- **Demonstration code**: see [What is implemented](#what-is-implemented) and the [five-minute smoke test](#five-minute-smoke-test).
+
 ## Review-stage availability statement
 
 The current repository is intended to document the methodological structure and allow readers to inspect and test the main software pipeline. It should **not** be treated as the final archival package for reproducing every numerical result reported in the revised manuscript.
@@ -129,7 +135,7 @@ python scripts/aggregate_runs.py --input outputs/main --output outputs/main/summ
 
 ## Complete results for all 14 baselines
 
-The `†` marker in Table II, Figs. 3--5, Table V, and Fig. 7 of the manuscript points to this section. TiDAL-Net is evaluated against 14 baseline methods, while the manuscript presents 10 representative baselines because of space limitations. The complete comparison covers four groups:
+The `†` marker in Table II, Figs. 4–6, Table V, and Fig. 8 of the manuscript points to this section. TiDAL-Net is evaluated against 14 baseline methods, while the manuscript presents 10 representative baselines because of space limitations. The complete comparison covers four groups:
 
 - **Temporal:** Autoformer, PAREformer, MeaTS, and SAITS;
 - **Spatial:** GNN-DTAN and MSD-GNN;
@@ -146,27 +152,27 @@ Table II reports the complete reconstruction results of all 14 baselines and TiD
 
 This table supports direct comparison across datasets and degradation levels. It also shows how the relative advantage of TiDAL-Net changes as the affected-data ratio increases.
 
-### Fig. 3 — Overall reconstruction comparison
+### Fig. 4 — Overall reconstruction comparison
 
-Fig. 3 summarizes the principal accuracy comparison. Panels (a)--(f) show the MAE trends on the six datasets as the affected-data ratio increases, while panels (g)--(h) compare the average performance and overall ranking of all methods.
+Fig. 4 summarizes the principal accuracy comparison. Panels (a)--(f) show the MAE trends on the six datasets as the affected-data ratio increases, while panels (g)--(h) compare the average performance and overall ranking of all methods.
 
-![Complete overall comparison corresponding to Fig. 3](results/full_baseline_comparison/fig3_full_results.png)
+![Complete overall comparison corresponding to Fig. 4](results/full_baseline_comparison/fig4_full_results.png)
 
 The figure shows that conventional temporal, spatial, and spatio-temporal models degrade differently under increasingly irregular telemetry. TiDAL-Net achieves the lowest overall error above an affected-data ratio of approximately 3.9%, and its advantage becomes clearer under more severe degradation.
 
-### Fig. 4 — Real-B reconstruction case
+### Fig. 5 — Real-B reconstruction case
 
-Fig. 4 presents a representative Real-B case at the 5% affected-data ratio. It includes a communication gap and a timestamp-displacement interval, allowing the methods to be compared in terms of trajectory continuity, amplitude recovery, phase alignment, and residual error.
+Fig. 5 presents a representative Real-B case at the 5% affected-data ratio. It includes a communication gap and a timestamp-displacement interval, allowing the methods to be compared in terms of trajectory continuity, amplitude recovery, phase alignment, and residual error.
 
-![Complete Real-B case comparison corresponding to Fig. 4](results/full_baseline_comparison/fig4_real_b_case.png)
+![Complete Real-B case comparison corresponding to Fig. 5](results/full_baseline_comparison/fig5_real_b_case.png)
 
 The communication-gap segment evaluates recovery when observations are unavailable, whereas the timestamp-displacement segment evaluates whether a method can account for the actual acquisition time rather than relying only on sample indices.
 
-### Fig. 5 — Constellation reconstruction case
+### Fig. 6 — Constellation reconstruction case
 
-Fig. 5 shows a representative constellation event sequence containing a ground-link outage, an inter-satellite link failure, and subsequent link reselection. The figure compares reconstruction errors during link interruption and the recovery behavior after communication becomes available again.
+Fig. 6 shows a representative constellation event sequence containing a ground-link outage, an inter-satellite link failure, and subsequent link reselection. The figure compares reconstruction errors during link interruption and the recovery behavior after communication becomes available again.
 
-![Complete constellation case comparison corresponding to Fig. 5](results/full_baseline_comparison/fig5_constellation_case.png)
+![Complete constellation case comparison corresponding to Fig. 6](results/full_baseline_comparison/fig6_constellation_case.png)
 
 This case evaluates whether each method can adapt to changing communication reachability. TiDAL-Net uses the current reachability mask to suppress unavailable relations and reweight the remaining valid cross-satellite information.
 
@@ -178,22 +184,50 @@ Table V compares all methods in terms of trainable parameters, single-window lat
 
 The table provides a direct view of the accuracy–efficiency trade-off. Although TiDAL-Net has a higher model cost, its 5.80 ms single-window latency remains well below the assessed telemetry query interval, while batch processing reduces the amortized latency to 0.72 ms per window.
 
-### Fig. 7 — Accuracy–efficiency trade-off
+### Fig. 8 — Accuracy–efficiency trade-off
 
-Fig. 7 visualizes the relationship among reconstruction accuracy, latency, memory consumption, and throughput for all evaluated methods. It complements Table V by showing whether improvements in reconstruction accuracy are obtained at a practical computational cost.
+Fig. 8 visualizes the relationship among reconstruction accuracy, latency, memory consumption, and throughput for all evaluated methods. It complements Table V by showing whether improvements in reconstruction accuracy are obtained at a practical computational cost.
 
-![Complete accuracy–efficiency comparison corresponding to Fig. 7](results/full_baseline_comparison/fig7_efficiency_tradeoff.png)
+![Complete accuracy–efficiency comparison corresponding to Fig. 8](results/full_baseline_comparison/fig8_efficiency_tradeoff.png)
 
 The figure highlights the operating position of TiDAL-Net relative to lightweight and high-capacity baselines. It shows that TiDAL-Net maintains online reconstruction capability while providing the lowest average reconstruction error.
+
+## Supplementary material
+
+Due to space limitations, only the key content is analyzed and described in the manuscript. The remaining experimental descriptions, results, and materials are collected in [`Supplementary_Material.pdf`](Supplementary_Material.pdf), which is also submitted with the manuscript. The `†` marker in Table VII and in the text of the manuscript points to this document. Section, table, equation, and reference numbers without the prefix S refer to the revised manuscript.
+
+| Section | Content | Figures and tables |
+|---|---|---|
+| S1 | Experimental setup: datasets, degradation protocol and evaluated levels, baselines, training, and metrics | [Fig. S1](supplementary/figures/png/FigS1_degradation_composition.png), Tables S1–S3 |
+| S2 | Low affected-data ratios (0.5%–2.5%), error by position type, and gated inference | [Fig. S2](supplementary/figures/png/FigS2_low_ratio.png), Tables S4–S6 |
+| S3 | Long consecutive gaps and the case without valid anchors | [Fig. S3](supplementary/figures/png/FigS3_long_gap.png), Tables S7–S8 |
+| S4 | Reliability of the estimated uncertainty | [Fig. S4](supplementary/figures/png/FigS4_uncertainty_reliability.png), Tables S9–S10 |
+| S5 | Mission-mode shift and the training-derived candidate graph | [Fig. S5](supplementary/figures/png/FigS5_mission_mode_shift.png), Tables S11–S12 |
+| S6 | Sensitivity of the graph-related parameters | [Fig. S6](supplementary/figures/png/FigS6_graph_parameter_sensitivity.png), Table S13 |
+| S7 | Formulas of secondary steps moved from the method section | Eqs. (S2)–(S12), also in [`supplementary/equations.pdf`](supplementary/equations.pdf) |
+| S8 | Contents of this repository | – |
+
+The files of the supplementary material are organized as follows:
+
+- `supplementary/figures/`: Figs. S1–S6 as 600-dpi PNG files and as vector PDF, SVG, and EMF files;
+- `supplementary/data/`: the values of Tables S1–S13 and of the curves in Figs. S1–S6 as CSV files;
+- `supplementary/equations.pdf`: Section S7 as a separate file;
+- `supplementary/source/`: the LaTeX source of the supplementary document and the Python script that draws Figs. S1–S6.
+
+See [`supplementary/README.md`](supplementary/README.md) for the file list and the instructions for rebuilding the figures and the document.
 
 ## Repository map
 
 ```text
+Supplementary_Material.pdf  supplementary material of the manuscript (Sections S1-S8)
+supplementary/              figures, CSV data, moved formulas, and sources of the supplementary material
 configs/                    paper, dataset, ablation, and sensitivity configs
 data/manifests/             committed channel/split/corruption manifests
 docs/                       reproducibility and paper-to-code documentation
 results/full_baseline_comparison/
                             complete 14-baseline tables and figures
+Complete experimental results/
+                            vector PDF versions of the complete Figs. 4, 5, 6, and 8
 scripts/                    data, training, evaluation, statistics, and latency CLIs
 src/tidalnet/data/          schemas, normalization, windows, corruption operators
 src/tidalnet/graph/         training-only MIC graph construction
