@@ -2,7 +2,7 @@ dataset:
   name: smap
   raw_root: data/raw/smap
   output: data/processed/smap.npz
-  expected_channels: 20
+  expected_channels: 55
   channel_manifest: data/manifests/smap_channels.json
   sample_interval_seconds: 60.0
   timestamp_mode: constructed_nominal
